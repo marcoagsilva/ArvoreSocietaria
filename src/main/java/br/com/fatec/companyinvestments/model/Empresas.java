@@ -8,9 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Empresas {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	
 	
 	private String company_name; // razao social
 	
@@ -21,6 +19,10 @@ public class Empresas {
 	private String company_telefone;
 	
 	private String company_inscricao; // inscricao estadual
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	public Long getId() {
 		return id;

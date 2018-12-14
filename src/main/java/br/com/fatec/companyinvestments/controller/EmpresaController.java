@@ -85,7 +85,12 @@ public class EmpresaController {
 	
 	@GetMapping("/investir/investidora/{idInvestidora}")
 	public List<Investimentos> listarInvestimentosInvestidora(@PathVariable Long idInvestidora) {
-		return investimentoRepository.findByidInvestidora(idInvestidora);
+		
+		if(idInvestidora == null || idInvestidora == 0) {
+			return investimentoRepository.findAll();
+		} else {
+			return investimentoRepository.findByidInvestidora(idInvestidora);
+		}
 	}
 	
 	@PostMapping("/investir")

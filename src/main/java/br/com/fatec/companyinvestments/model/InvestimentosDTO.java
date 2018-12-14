@@ -9,7 +9,7 @@ public class InvestimentosDTO implements Serializable {
 	private Long idInvestidora;
 	
 	private Long idInvestida;
-	
+
 	private double valorInvestido;
 
 	public Long getIdInvestidora() {
