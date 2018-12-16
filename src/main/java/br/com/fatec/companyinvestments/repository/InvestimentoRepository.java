@@ -8,6 +8,5 @@ import br.com.fatec.companyinvestments.model.Investimentos;
 
 public interface InvestimentoRepository extends JpaRepository<Investimentos, Long> {
 	
-	public List<Investimentos> findByidInvestidora(Long idInvestidora);
-	
+	public List<Investimentos> findByidInvestidora(Long idInvestidora);	
 }

@@ -2,6 +2,7 @@ package br.com.fatec.companyinvestments.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fatec.companyinvestments.model.Empresas;
 import br.com.fatec.companyinvestments.model.Investimentos;
-import br.com.fatec.companyinvestments.model.InvestimentosDTO;
+import br.com.fatec.companyinvestments.model.dto.InvestimentosDTO;
+import br.com.fatec.companyinvestments.model.dto.InvestimentosFullDTO;
 import br.com.fatec.companyinvestments.repository.EmpresaRepository;
 import br.com.fatec.companyinvestments.repository.InvestimentoRepository;
+import br.com.fatec.companyinvestments.service.InvestimentoService;
 
 @RestController
 @RequestMapping("/api")
@@ -33,6 +36,9 @@ public class EmpresaController {
 	
 	@Autowired
 	InvestimentoRepository investimentoRepository;
+	
+	@Autowired
+	InvestimentoService investimentoService;
 	
 	@GetMapping
 	public List<Empresas> listar() {
@@ -90,6 +96,29 @@ public class EmpresaController {
 			return investimentoRepository.findAll();
 		} else {
 			return investimentoRepository.findByidInvestidora(idInvestidora);
+		}
+	}
+	
+	@GetMapping("/investir/investimentos")
+	public ResponseEntity<List<InvestimentosFullDTO>> listAll() throws Exception {
+		try {
+			List<Investimentos> foundInvestimentos = investimentoRepository.findAll();
+			List<InvestimentosFullDTO> foundInvestimentosFullDTO = foundInvestimentos.stream()
+					.map(temp -> {
+							try {
+								return investimentoService.Convert(temp);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							return null;
+					})
+					.collect(Collectors.toList());
+			
+			return ResponseEntity.ok(foundInvestimentosFullDTO);
+		}
+		catch(Exception e) {
+			throw e;
 		}
 	}
 	

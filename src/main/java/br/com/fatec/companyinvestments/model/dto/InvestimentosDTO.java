@@ -1,10 +1,10 @@
-package br.com.fatec.companyinvestments.model;
+package br.com.fatec.companyinvestments.model.dto;
 
 import java.io.Serializable;
 
 public class InvestimentosDTO implements Serializable {
 	
-	private static final long serialVersionUID = -8357713369256248619L;
+	private static final long serialVersionUID = 1L;
 	
 	private Long idInvestidora;
 	
