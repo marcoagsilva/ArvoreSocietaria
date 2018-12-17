@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fatec.companyinvestments</groupId>
-	<artifactId>CompanyInvestmentsCRUD</artifactId>
+	<artifactId>ArvoreSocietaria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>CompanyInvestmentsCRUD</name>
+	<name>ArvoreSocietaria</name>
 	<description>Company Investments API</description>
 
 	<properties>

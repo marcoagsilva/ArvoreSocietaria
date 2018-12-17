@@ -99,23 +99,27 @@ public class EmpresaController {
 		}
 	}
 	
+	@GetMapping("/investir/investida/{idInvestida}")
+	public List<Investimentos> listarInvestimentosInvestida(@PathVariable Long idInvestida) {
+		return investimentoRepository.findByidInvestida(idInvestida);
+	}
+	
+	@GetMapping("/investir/investimentos/investida/{idInvestida}/{idInvestidora}")
+	public List<Investimentos> findByidInvestidaAndIdInvestidora(@PathVariable Long idInvestida, @PathVariable Long idInvestidora) {
+		return investimentoRepository.findByidInvestidaAndIdInvestidora(idInvestida, idInvestidora);
+	}
+	
+	@GetMapping("/investir/investimentos/investidora/{idInvestidora}/{idInvestida}")
+	public List<Investimentos> findByIdInvestidoraAndIdInvestida(@PathVariable Long idInvestidora, @PathVariable Long idInvestida) {
+		return investimentoRepository.findByidInvestidaAndIdInvestidora(idInvestida, idInvestidora);
+	}
+	
 	@GetMapping("/investir/investimentos")
-	public ResponseEntity<List<InvestimentosFullDTO>> listAll() throws Exception {
+	public List<InvestimentosFullDTO> listAll() throws Exception {
 		try {
 			List<Investimentos> foundInvestimentos = investimentoRepository.findAll();
-			List<InvestimentosFullDTO> foundInvestimentosFullDTO = foundInvestimentos.stream()
-					.map(temp -> {
-							try {
-								return investimentoService.Convert(temp);
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							return null;
-					})
-					.collect(Collectors.toList());
 			
-			return ResponseEntity.ok(foundInvestimentosFullDTO);
+			return investimentoService.Convert(foundInvestimentos);
 		}
 		catch(Exception e) {
 			throw e;

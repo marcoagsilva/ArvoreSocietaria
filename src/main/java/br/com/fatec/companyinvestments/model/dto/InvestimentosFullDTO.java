@@ -1,6 +1,7 @@
 package br.com.fatec.companyinvestments.model.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class InvestimentosFullDTO implements Serializable {
 	
@@ -8,8 +9,7 @@ public class InvestimentosFullDTO implements Serializable {
 	
 	private Long idInvestidora;
 	private String nomeInvestidora;
-	private EmpresaInvestidaDTO empresaInvestida;
-	
+	private List<EmpresaInvestidaDTO> empresaInvestida;
 	public Long getIdInvestidora() {
 		return idInvestidora;
 	}
@@ -22,13 +22,15 @@ public class InvestimentosFullDTO implements Serializable {
 	public void setNomeInvestidora(String nomeInvestidora) {
 		this.nomeInvestidora = nomeInvestidora;
 	}
-	public EmpresaInvestidaDTO getEmpresaInvestida() {
+	public List<EmpresaInvestidaDTO> getEmpresaInvestida() {
 		return empresaInvestida;
 	}
-	public void setEmpresaInvestida(EmpresaInvestidaDTO empresaInvestida) {
+	public void setEmpresaInvestida(List<EmpresaInvestidaDTO> empresaInvestida) {
 		this.empresaInvestida = empresaInvestida;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 }
